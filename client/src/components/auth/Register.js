@@ -106,7 +106,24 @@ class Register extends Component {
                     <div className="invalid-feedback">{errors.password2}</div>
                   )}
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="form-group">
+                  <div className="row">
+                    <input
+                      type="submit"
+                      className="btn btn-custom btn-info my-2 py-2 px-4 mx-auto "
+                      value="SIGN UP"
+                    />
+                  </div>
+                  <div className="row text-center mx-4">
+                    <small>
+                      By signing up, I agree to NerdNet’s
+                      <a href="/policy">
+                        {" "}
+                        Privacy Policy and Terms of Use
+                      </a> and<a href="/terms"> Terms of Use.</a>
+                    </small>
+                  </div>
+                </div>
               </form>
             </div>
           </div>

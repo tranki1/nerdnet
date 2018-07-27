@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import classnames from "classnames";
-
+import { Link } from "react-router-dom";
 class Login extends Component {
   state = {
     email: "",
@@ -71,7 +71,24 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="row">
+                  <input
+                    type="submit"
+                    className="btn btn-custom btn-info my-2 py-2 px-4 mx-auto "
+                    value="LOGIN"
+                  />
+                </div>
+                <div className="row mt-3">
+                  <p className=" mx-auto">NEW TO THE NERDNET?</p>
+                </div>
+                <div className="row">
+                  <Link
+                    to="/register"
+                    className="btn btn-light btn-custom py-2 px-4 mx-auto btn-outline-info"
+                  >
+                    JOIN NOW
+                  </Link>
+                </div>
               </form>
             </div>
           </div>

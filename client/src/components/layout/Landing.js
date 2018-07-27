@@ -21,11 +21,17 @@ class Landing extends Component {
                   <span className="font-italic">creative nerds </span>
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
-                  Sign Up
+                <Link
+                  to="/register"
+                  className="btn btn-lg btn-info mr-2 btn-custom py-2 px-4 "
+                >
+                  SIGN UP
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
-                  Login
+                <Link
+                  to="/login"
+                  className="btn btn-lg btn-light btn-custom py-2 px-4"
+                >
+                  LOGIN
                 </Link>
               </div>
             </div>
