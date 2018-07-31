@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
   state = {
@@ -25,14 +27,38 @@ class CreateProfile extends Component {
     errors: {}
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  onSubmitHandler = e => {
+    e.preventDefault();
+
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubusername: this.state.githubusername,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
+    };
+
+    this.props.createProfile(profileData, this.props.history);
+  };
+
   onChangeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmitHandler = e => {
-    e.preventDefault();
-    console.log();
-  };
   render() {
     const { errors, displaySocialInputs } = this.state;
 
@@ -58,6 +84,7 @@ class CreateProfile extends Component {
             value={this.state.facebook}
             onChange={this.onChangeHandler}
           />
+
           <InputGroup
             icon="fab fa-linkedin"
             type="text"
@@ -66,6 +93,7 @@ class CreateProfile extends Component {
             name="linkedin"
             onChange={this.onChangeHandler}
           />
+
           <InputGroup
             icon="fab fa-youtube"
             type="text"
@@ -74,6 +102,7 @@ class CreateProfile extends Component {
             value={this.state.youtube}
             onChange={this.onChangeHandler}
           />
+
           <InputGroup
             icon="fab fa-instagram"
             type="text"
@@ -104,9 +133,9 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              {/* <a href="dashboard.html" className="btn btn-light">
+              <a href="dashboard.html" className="btn btn-light">
                 Go Back
-              </a> */}
+              </a>
               <h1 className="display-4 text-center">Create Your Profile</h1>
               <p className="lead text-center">
                 Let's get some information to make your profile stand out
@@ -194,6 +223,7 @@ class CreateProfile extends Component {
 
                 <div className="mb-3">
                   <button
+                    type="button"
                     className="btn btn-light"
                     onClick={() => {
                       this.setState(preState => ({
@@ -222,14 +252,19 @@ class CreateProfile extends Component {
     );
   }
 }
+
 CreateProfile.propTypes = {
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
-  auth: state.auth,
   profile: state.profile,
-  errors: state.error
+  errors: state.errors
 });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile));

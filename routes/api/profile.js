@@ -93,7 +93,7 @@ router.get("/all", (req, res) => {
     .catch(err => res.status(404).json({ profile: "There are no profile" }));
 });
 
-// @route POST api/profile/
+// @route POST api/profile
 // @desc create or update user profile
 // @access Private
 router.post(
