@@ -39,6 +39,24 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
+//Add Experiences
+export const addExperiences = (expData, history) => dispatch => {
+  axios
+    .post("api/profile/experiences")
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // profile Loading
 export const setProfileLoading = () => {
   return {
