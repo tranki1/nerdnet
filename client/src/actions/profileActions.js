@@ -40,15 +40,10 @@ export const createProfile = (profileData, history) => dispatch => {
 };
 
 //Add Experiences
-export const addExperiences = (expData, history) => dispatch => {
+export const addExperience = (expData, history) => dispatch => {
   axios
-    .post("api/profile/experiences")
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
-    )
+    .post("api/profile/experience", expData)
+    .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
