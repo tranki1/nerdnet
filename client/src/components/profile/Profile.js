@@ -10,35 +10,42 @@ import Spinner from "../common/Spinner/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
 
 class Profile extends Component {
-  componetDidMount() {
+  componentDidMount() {
     if (this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
   }
 
   render() {
+    const { profile, loading } = this.props.profile;
+
+    let profileContent;
+    if (profile === null || loading) {
+      profileContent = <Spinner />;
+    } else {
+      profileContent = (
+        <div className="col-md-12">
+          <div className="row">
+            <div className="col-6">
+              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+                Back To Profiles
+              </Link>
+            </div>
+            <div className="col-6" />
+          </div>
+
+          <ProfileHeader profile={profile} />
+          <ProfileAbout />
+          <ProfileCreds />
+          <ProfileGithub />
+        </div>
+      );
+    }
+
     return (
       <div className="profile">
         <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-6">
-                  <Link
-                    to="/profiles"
-                    className="btn btn-light mb-3 float-left"
-                  >
-                    Back To Profiles
-                  </Link>
-                </div>
-                <div className="col-6" />
-                <ProfileHeader />
-                <ProfileAbout />
-                <ProfileCreds />
-                <ProfileGithub />
-              </div>
-            </div>
-          </div>
+          <div className="row">{profileContent}</div>
         </div>
       </div>
     );
