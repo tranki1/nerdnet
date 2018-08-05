@@ -1,71 +1,82 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Moment from "react-moment";
 
 class ProfileCreds extends Component {
   render() {
-    return (
-      <div>
-        <h1>TODO:PROFILE CREDS</h1>
-        <div className="row">
-          <div className="col-md-6">
-            <h3 className="text-center text-info">Experience</h3>
-            <ul className="list-group">
-              <li className="list-group-item">
-                <h4>Microsoft</h4>
-                <p>Oct 2011 - Current</p>
-                <p>
-                  <strong>Position:</strong> Senior Developer
-                </p>
-                <p>
-                  <strong>Description:</strong> Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Unde doloribus dicta enim
-                  excepturi laborum voluptatem nam provident quisquam facere.
-                  Quae?
-                </p>
-              </li>
-              <li className="list-group-item">
-                <h4>Sun Microsystems</h4>
-                <p>Oct 2004 - Nov 2011</p>
-                <p>
-                  <strong>Position: </strong> Systems Admin
-                </p>
-                <p>
-                  <p>
-                    <strong>Location: </strong> Miami, FL
-                  </p>
-                  <strong>Description: </strong> Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Unde doloribus dicta enim
-                  excepturi laborum voluptatem nam provident quisquam facere.
-                  Quae?
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div className="col-md-6">
-            <h3 className="text-center text-info">Education</h3>
-            <ul className="list-group">
-              <li className="list-group-item">
-                <h4>Univeresity Of Washington</h4>
-                <p>Sep 1993 - June 1999</p>
-                <p>
-                  <strong>Degree: </strong>Masters
-                </p>
-                <p>
-                  <strong>Field Of Study: </strong>Computer Science
-                </p>
+    const { experience, education } = this.props;
 
-                <p>
-                  <strong>Description:</strong> Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Unde doloribus dicta enim
-                  excepturi laborum voluptatem nam provident quisquam facere.
-                  Quae?
-                </p>
-              </li>
-            </ul>
-          </div>
+    const experiences = experience.map(exp => (
+      <li className="list-group-item" key={exp._id}>
+        <h4>{exp.school}</h4>
+        <p>
+          <Moment format="MMM YYYY">{exp.from}</Moment> -{" "}
+          {exp.to === null ? (
+            " Current"
+          ) : (
+            <Moment format="MMM YYYY">{exp.to}</Moment>
+          )}
+        </p>
+        <p>
+          <strong>Position:</strong> {exp.title}
+        </p>
+        <p>
+          {exp.description === "" ? null : (
+            <span>
+              <strong>Description:</strong> {exp.description}
+            </span>
+          )}
+        </p>
+      </li>
+    ));
+
+    const educations = education.map(edu => (
+      <li className="list-group-item" key={edu._id}>
+        <h4>{edu.company}</h4>
+        <p>
+          <Moment format="MMM YYYY">{edu.from}</Moment> -{" "}
+          {edu.to === null ? (
+            " Current"
+          ) : (
+            <Moment format="MMM YYYY">{edu.to}</Moment>
+          )}
+        </p>
+        <p>
+          <strong>Position:</strong> {edu.degree}
+        </p>
+        <p>
+          {edu.description === "" ? null : (
+            <span>
+              <strong>Description:</strong> {edu.description}
+            </span>
+          )}
+        </p>
+      </li>
+    ));
+    return (
+      <div className="row">
+        <div className="col-md-6">
+          <h3 className="text-center text-info">Experience</h3>
+          {experiences.length > 0 ? (
+            <ul className="list-group"> {experiences}</ul>
+          ) : (
+            <p className="text-center">No experience listed</p>
+          )}
+        </div>
+        <div className="col-md-6">
+          <h3 className="text-center text-info">Education</h3>
+          {educations.length > 0 ? (
+            <ul className="list-group"> {educations}</ul>
+          ) : (
+            <p className="text-center">No education listed</p>
+          )}
         </div>
       </div>
     );
   }
 }
-
+ProfileCreds.propTypes = {
+  education: PropTypes.object.isRequired,
+  experience: PropTypes.object.isRequired
+};
 export default ProfileCreds;

@@ -28,7 +28,7 @@ class ProfileHeader extends Component {
               </p>
               <p>
                 {isEmpty(profile.location) ? null : (
-                  <p> at {profile.location}</p>
+                  <span> at {profile.location}</span>
                 )}
               </p>
               <p>
