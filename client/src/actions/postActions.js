@@ -1,4 +1,10 @@
-import { ADD_POST, GET_ERRORS, GET_POSTS, POST_LOADING } from "./types";
+import {
+  ADD_POST,
+  GET_ERRORS,
+  GET_POSTS,
+  POST_LOADING,
+  DELETE_POST
+} from "./types";
 import axios from "axios";
 
 export const addPost = postData => dispatch => {
@@ -31,10 +37,28 @@ export const getPosts = () => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_ERRORS,
+        type: GET_POSTS,
         payload: null
       });
     });
+};
+
+//Delete post
+export const deletePost = postId => dispatch => {
+  axios
+    .delete(`/api/posts/${postId}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_POST,
+        payload: postId
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 //Set loading state
