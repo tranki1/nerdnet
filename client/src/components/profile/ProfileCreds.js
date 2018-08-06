@@ -76,7 +76,7 @@ class ProfileCreds extends Component {
   }
 }
 ProfileCreds.propTypes = {
-  education: PropTypes.object.isRequired,
-  experience: PropTypes.object.isRequired
+  education: PropTypes.array.isRequired,
+  experience: PropTypes.array.isRequired
 };
 export default ProfileCreds;
