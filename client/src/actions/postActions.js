@@ -2,12 +2,14 @@ import {
   ADD_POST,
   GET_ERRORS,
   GET_POSTS,
+  GET_POST,
   POST_LOADING,
   DELETE_POST
 } from "./types";
 import axios from "axios";
 
 export const addPost = postData => dispatch => {
+  dispatch(setLoadingState());
   axios
     .post("/api/posts", postData)
     .then(res => {
@@ -42,7 +44,24 @@ export const getPosts = () => dispatch => {
       });
     });
 };
-
+//Get Post By ID
+export const getPostById = id => dispatch => {
+  dispatch(setLoadingState());
+  axios
+    .get(`/api/posts/${id}`)
+    .then(res => {
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_POST,
+        payload: null
+      });
+    });
+};
 //Delete post
 export const deletePost = postId => dispatch => {
   axios
