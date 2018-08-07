@@ -1,6 +1,16 @@
-# NERDNET
 
-A social network web application for developer.
+# [NERDNET](https://nameless-plains-86378.herokuapp.com/) &nbsp; 
+
+[![GitHub package version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/tranki1/nerdnet/releases/tag/v1.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/computationalcore/myreads/blob/master/LICENSE)
+
+A social network web application for developers.
+
+<p align="center">
+  <img src="https://github.com/tranki1/nerdnet/blob/master/NerdNet.png" width="350" title="hover text">
+</p>
+## Demo
+https://nameless-plains-86378.herokuapp.com/
 
 ## Getting Started
 
@@ -26,7 +36,8 @@ npm install
 
 ## Versioning
 
-v1.0.0(on-going)
+v1.0.0
+Default project implementation
 
 ## Authors
 
@@ -34,4 +45,4 @@ v1.0.0(on-going)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/computationalcore/myreads/blob/master/LICENSE) file for details
