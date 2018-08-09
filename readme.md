@@ -9,6 +9,7 @@ A social network web application for developers.
 <p align="center">
   <img src="https://github.com/tranki1/nerdnet/blob/master/NerdNet.png" width="350" title="hover text">
 </p>
+
 ## Demo
 https://nameless-plains-86378.herokuapp.com/
 
